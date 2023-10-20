@@ -1,51 +1,56 @@
 const { Schema, model } = require('mongoose');
 const Reaction = require('./Reaction');
 
+
+// Schema to create Thought model
 const thoughtSchema = new Schema({
-  //thoughtText: String, required, 280 character maximum
-  thoughtText: {
-    type: String,
-    required: 'Please enter a thought',
-    minlength: 1,
-    maxlength: 280
-  },
-  //createdAt: Date, set default value to the current timestamp, use a getter method to format the timestamp on query
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  //reactions: Array of nested documents created with the reactionSchema
-  reactions: [Reaction],
-},
-  {
-    toJSON: {
-      virtuals: true,
-      getters: true
+    thoughtText: {
+        type: String,
+        require: true,
+        minLength: 1,
+        maxLength: 280,
     },
-    id: false
-  });
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    username: {
+        type: String,
+        required: true,
+    },
+    reactions: [Reaction],
+},
+    {
+        toJSON: {
+            virtuals: true,
+            getters: true,
+        },
+        id: false,
+    }
+);
 
 thoughtSchema.path('createdAt').get(function (timestamp) {
-  return formatDate(timestamp);
+    return formatDate(timestamp);
 });
 
-function formatDate(date) {
-  const option = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-  }
+function formatDate(timestamp) {
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    };
+    return new Date(timestamp).toLocaleString(undefined, options);
 }
 
-//Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query
+// Virtual to get total count of reactions on retrieval
 thoughtSchema.virtual('reactionCount').get(function () {
-  return this.reactions.length;
+    return this.reactions.length;
 });
 
-//Create the Thought model using the thoughtSchema
+// Create the Thought model using the thoughtSchema
 const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;

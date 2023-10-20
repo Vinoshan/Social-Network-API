@@ -1,4 +1,3 @@
-// Vars: User, Thought, Reaction
 const User = require('./User');
 const Reaction = require('./Reaction');
 const Thought = require('./Thought');
