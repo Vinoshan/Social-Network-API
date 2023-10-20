@@ -16,7 +16,7 @@ module.exports = {
       const thought = await Thought.findOne({ _id: req.params.thoughtId })
 
       if (!thought) {
-        return res.status(404).json({ message: 'No Thought was found with this ID' });
+        return res.status(404).json({ message: 'No thought with that ID' });
       }
 
       res.json(thought);
@@ -56,7 +56,7 @@ module.exports = {
       );
 
       if (!thought) {
-        return res.status(404).json({ message: 'No Thought was found with this ID' });
+        return res.status(404).json({ message: 'No thought with this id!' });
       }
 
       res.json(thought);
@@ -71,7 +71,7 @@ module.exports = {
       const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
 
       if (!thought) {
-        return res.status(404).json({ message: 'No Thought was found with this ID' });
+        return res.status(404).json({ message: 'No thought with this id!' });
       }
 
       const user = await User.findOneAndUpdate(
@@ -83,15 +83,15 @@ module.exports = {
       if (!user) {
         return res
           .status(404)
-          .json({ message: 'Thought deleted but no user was found!' });
+          .json({ message: 'thought deleted but no user with this id!' });
       }
 
-      res.json({ message: 'Thought Successfully Deleted!' });
+      res.json({ message: 'Thought successfully deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }
   },
-  // Add thought reaction
+  // Add a thought reaction
   async addThoughtReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
@@ -101,7 +101,7 @@ module.exports = {
       );
 
       if (!thought) {
-        return res.status(404).json({ message: 'No Thought was found with this ID' });
+        return res.status(404).json({ message: 'No thought with this id!' });
       }
 
       res.json(thought);
@@ -119,10 +119,10 @@ module.exports = {
       )
 
       if (!thought) {
-        return res.status(404).json({ message: 'No Thought was found with this ID!' });
+        return res.status(404).json({ message: 'No thought with this id!' });
       }
 
-      res.json({ message: 'Reaction Successfully Deleted' });
+      res.json({ message: 'reaction successfully deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }
