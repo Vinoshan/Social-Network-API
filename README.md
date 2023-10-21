@@ -4,13 +4,14 @@
 
 MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. In this project, we have built an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. The application utilizes Express.js for routing, a MongoDB database, and the Mongoose ODM.
 
-## Table of Contents
--[Features](#features)
--[Technologies Used](#technologies-used)
--[Installation](#installation)
--[Usage](#usage)
--[Contact](#contact)
-
+- [NoSQL: Social Network API](#nosql-social-network-api)
+  - [Description](#description)
+  - [Features](#features)
+  - [Technologies Used](#technologies-used)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Getting Started](#getting-started)
+  - [Contact](#contact)
 ## Features
 
 - **User Management:** Create, read, update, and delete user profiles with unique usernames and valid email addresses.
