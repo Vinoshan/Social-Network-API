@@ -6,12 +6,17 @@ MongoDB is a popular choice for many social networks due to its speed with large
 
 - [NoSQL: Social Network API](#nosql-social-network-api)
   - [Description](#description)
+  - [Walkthrough Video](#walkthrough-video)
   - [Features](#features)
   - [Technologies Used](#technologies-used)
   - [Installation](#installation)
   - [Usage](#usage)
     - [Getting Started](#getting-started)
   - [Contact](#contact)
+
+## Walkthrough Video
+[Walkthrough Video](https://youtu.be/sDRwKcK-VgM)
+
 ## Features
 
 - **User Management:** Create, read, update, and delete user profiles with unique usernames and valid email addresses.
