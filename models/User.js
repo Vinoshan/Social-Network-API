@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
     username: {
@@ -17,13 +17,13 @@ const userSchema = new Schema({
     thoughts: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'thought',
+            ref: "thought",
         },
     ],
     friends: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'user',
+            ref: "user",
         },
     ],
 
@@ -37,10 +37,10 @@ const userSchema = new Schema({
 );
 
 // Virtual to get total count of friends on retrieval
-userSchema.virtual('friendCount').get(function () {
+userSchema.virtual("friendCount").get(function () {
     return this.friends.length;
 });
 
-const User = model('user', userSchema);
+const User = model("user", userSchema);
 
 module.exports = User;

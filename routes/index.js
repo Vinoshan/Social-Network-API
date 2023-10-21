@@ -1,9 +1,11 @@
-const router = require('express').Router();
-const apiRoutes = require('./api');
+// Vars: router, apiRoutes
+const router = require("express").Router();
+const apiRoutes = require("./api");
 
-router.use('/api', apiRoutes);
+// add prefix of `/api` to all of the api routes imported from the `api` directory
+router.use("/api", apiRoutes);
 
 // If no API routes are hit, send the React app
-router.use((req, res) => res.send('Wrong route!'));
+router.use((req, res) => res.send("Wrong route!"));
 
 module.exports = router;

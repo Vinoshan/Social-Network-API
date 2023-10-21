@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types } = require("mongoose");
 
 const reactionSchema = new Schema({
     reactionId: {
@@ -27,17 +27,17 @@ const reactionSchema = new Schema({
     }
 );
 
-reactionSchema.path('createdAt').get(function (timestamp) {
+reactionSchema.path("createdAt").get(function (timestamp) {
     return formatDate(timestamp);
 });
 
 function formatDate(timestamp) {
     const options = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
         hour12: true,
     };
     return new Date(timestamp).toLocaleString(undefined, options);

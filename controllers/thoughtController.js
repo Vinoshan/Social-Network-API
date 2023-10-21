@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User, Thought } = require("../models");
 
 module.exports = {
   // get all thoughts
@@ -10,13 +10,14 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   // get a single thought
   async getSingleThought(req, res) {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId })
 
       if (!thought) {
-        return res.status(404).json({ message: 'No thought with that ID' });
+        return res.status(404).json({ message: "Thought ID does not exist." });
       }
 
       res.json(thought);
@@ -24,6 +25,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   // create a new thought
   async createThought(req, res) {
     try {
@@ -36,16 +38,17 @@ module.exports = {
 
       if (!user) {
         return res.status(404).json({
-          message: 'Thought created, but found no user with that ID',
+          message: "Thought created, but User does not exist!",
         });
       }
 
-      res.json('Created the thought');
+      res.json("Thought created!");
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
   },
+
   // update a thought
   async updateThought(req, res) {
     try {
@@ -56,7 +59,7 @@ module.exports = {
       );
 
       if (!thought) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+        return res.status(404).json({ message: "Thought ID does not exist!" });
       }
 
       res.json(thought);
@@ -71,7 +74,7 @@ module.exports = {
       const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
 
       if (!thought) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+        return res.status(404).json({ message: "Thought ID does not exist!" });
       }
 
       const user = await User.findOneAndUpdate(
@@ -83,14 +86,15 @@ module.exports = {
       if (!user) {
         return res
           .status(404)
-          .json({ message: 'thought deleted but no user with this id!' });
+          .json({ message: "Thought successfully deleted but User id does not exist!" });
       }
 
-      res.json({ message: 'Thought successfully deleted!' });
+      res.json({ message: "Thought successfully deleted!" });
     } catch (err) {
       res.status(500).json(err);
     }
   },
+
   // Add a thought reaction
   async addThoughtReaction(req, res) {
     try {
@@ -101,7 +105,7 @@ module.exports = {
       );
 
       if (!thought) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+        return res.status(404).json({ message: "Thought ID does not exist!" });
       }
 
       res.json(thought);
@@ -109,6 +113,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   // Remove thought reaction
   async removeThoughtReaction(req, res) {
     try {
@@ -119,10 +124,10 @@ module.exports = {
       )
 
       if (!thought) {
-        return res.status(404).json({ message: 'No thought with this id!' });
+        return res.status(404).json({ message: "Thought ID does not exist!!" });
       }
 
-      res.json({ message: 'reaction successfully deleted!' });
+      res.json({ message: "Reaction successfully deleted!" });
     } catch (err) {
       res.status(500).json(err);
     }

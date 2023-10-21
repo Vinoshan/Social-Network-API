@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const Reaction = require('./Reaction');
+const { Schema, model } = require("mongoose");
+const Reaction = require("./Reaction");
 
 
 // Schema to create Thought model
@@ -29,28 +29,28 @@ const thoughtSchema = new Schema({
     }
 );
 
-thoughtSchema.path('createdAt').get(function (timestamp) {
+thoughtSchema.path("createdAt").get(function (timestamp) {
     return formatDate(timestamp);
 });
 
 function formatDate(timestamp) {
     const options = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
         hour12: true,
     };
     return new Date(timestamp).toLocaleString(undefined, options);
 }
 
 // Virtual to get total count of reactions on retrieval
-thoughtSchema.virtual('reactionCount').get(function () {
+thoughtSchema.virtual("reactionCount").get(function () {
     return this.reactions.length;
 });
 
 // Create the Thought model using the thoughtSchema
-const Thought = model('thought', thoughtSchema);
+const Thought = model("thought", thoughtSchema);
 
 module.exports = Thought;
